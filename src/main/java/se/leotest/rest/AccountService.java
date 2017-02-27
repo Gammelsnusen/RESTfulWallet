@@ -50,9 +50,9 @@ public class AccountService {
     @Produces("text/plain")
     @Path("/balance/{username}")
     public Response getBalance(@PathParam("username") String username) {
-        
-        if (AccountManager.doesUserExist(username)) {
-            int balance = new AccountManager().getAccount(username).getBalance();
+        AccountManager accManager = new AccountManager();
+        if (accManager.doesUserExist(username)) {
+            int balance = accManager.getAccount(username).getBalance();
             return Response.status(200).entity("Account balance is: " + balance).build();
         } else {
             return Response.status(200).entity("Unknown user").build();

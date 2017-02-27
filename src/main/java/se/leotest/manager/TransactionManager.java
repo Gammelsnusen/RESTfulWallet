@@ -1,6 +1,5 @@
 package se.leotest.manager;
 
-import java.util.ArrayList;
 import java.util.List;
 import se.leotest.db.entities.TransactionEntity;
 import se.leotest.db.query.TransactionCRUD;
@@ -47,6 +46,7 @@ public class TransactionManager {
     
     /**
      * Kontrollerar om ett transaktionsid är upptaget
+     * (Finns i databasen)
      * 
      * Potentiell concurrency-bugg som jag inte hinner lösa! 
      * Gör vi en låsning kommer man inte "råka"
@@ -59,30 +59,13 @@ public class TransactionManager {
      * @param transid String
      * @return Boolean
      */
-    public static Boolean doesTransactionExist(String transid) {
+    public Boolean doesTransactionExist(String transid) {
         List<TransactionEntity> transactions = new TransactionCRUD().getTransactions();
         
-        for(TransactionEntity trans : transactions) {
-            if (transid.equals(trans.getTransactionid()))
-                return true;
-        }
-        
-        return false;
-    }
-    
-    /**
-     * Returnerar samtliga transaktioner
-     * 
-     * @return List<String>
-     */
-    public static List<String> getTransactionsAsStrings() {
-        List<TransactionEntity> transactions = new TransactionCRUD().getTransactions();
-        
-        List<String> transactionsAsString = new ArrayList<String>();
-        for (TransactionEntity trans : transactions) {
-            transactionsAsString.add("{" + trans.toString() + "}");
-        }
-        
-        return transactionsAsString;
+        boolean transExists = transactions.stream()
+            .map(TransactionEntity::getTransactionid)
+            .anyMatch(transid::equals);
+
+        return transExists;
     }
 }

@@ -1,7 +1,5 @@
 package se.leotest.manager;
 
-import java.util.ArrayList;
-import java.util.List;
 import se.leotest.db.entities.AccountEntity;
 import se.leotest.db.query.AccountCRUD;
 
@@ -40,21 +38,7 @@ public class AccountManager {
         return account;
     }
     
-    /**
-     * Returnerar samtliga användares användarnamn
-     * 
-     * @return List<String>
-     */
-    public static List<String> getAccountUsersAsStrings() {
-        List<AccountEntity> accounts = new AccountCRUD().getAccounts();
-        
-        List<String> userNames = new ArrayList<String>();
-        for (AccountEntity account : accounts) {
-            userNames.add(account.getName());
-        }
-        
-        return userNames;
-    }
+    
     
     /**
      * Kollar om användarnamnet är upptaget
@@ -70,7 +54,7 @@ public class AccountManager {
      * @param username String
      * @return Boolean
      */
-    public static Boolean doesUserExist(String username) {
+    public Boolean doesUserExist(String username) {
         AccountEntity account = new AccountCRUD().getAccount(username);
         
         return null != account ? true : false;

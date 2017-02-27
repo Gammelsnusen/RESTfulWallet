@@ -5,8 +5,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
-import se.leotest.manager.AccountManager;
-import se.leotest.manager.TransactionManager;
+import se.leotest.manager.AdminManager;
 
 /**
  * Administrerande tjänster för att lista olika saker från DB
@@ -30,7 +29,7 @@ public class AdminService {
     @Produces("text/plain")
     @Path("/users")
     public Response getAllUsers() {
-        List<String> userNames = AccountManager.getAccountUsersAsStrings();
+        List<String> userNames = AdminManager.getAccountUsersAsStrings();
         
         String response = "";
         for (String name : userNames) {
@@ -49,7 +48,7 @@ public class AdminService {
     @Produces("text/plain")
     @Path("/transactions")
     public Response getTransactions() {
-        List<String> transactions = TransactionManager.getTransactionsAsStrings();
+        List<String> transactions = AdminManager.getTransactionsAsStrings();
         
         String response = "";
         for (String transaction : transactions) {
