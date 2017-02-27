@@ -1,0 +1,13 @@
+se\leotest\db\query\TransactionCRUD.class
+se\leotest\manager\AccountManager.class
+se\leotest\exception\TransactionException.class
+se\leotest\transaction\TransactionType.class
+se\leotest\exception\AuthError.class
+se\leotest\rest\WalletService.class
+se\leotest\db\query\AccountCRUD.class
+se\leotest\rest\AccountService.class
+se\leotest\manager\TransactionManager.class
+se\leotest\db\entities\AccountEntity.class
+se\leotest\db\entities\TransactionEntity.class
+se\leotest\db\query\DBConnect.class
+se\leotest\rest\AdminService.class
